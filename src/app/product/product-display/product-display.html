@@ -1,8 +1,8 @@
 <ul>
-    <li> ID: {{product.id}}</li>
-    <li> Name: {{product.name}}</li>
-    <li> Preis: {{product.price}}</li>
-    <li> Gewicht: {{product.weight}}</li>
+    <li> ID: {{productParent.id}}</li>
+    <li id="name"> Name: {{productParent.name}}</li>
+    <li> Preis: {{productParent.price}}</li>
+    <li> Gewicht: {{productParent.weight}}</li>
 </ul>
 
 <button (click)="increasePrice()">Preis erhöhen</button>
