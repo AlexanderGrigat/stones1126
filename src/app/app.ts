@@ -16,4 +16,9 @@ export class App {
     this.product.price = newPrice;
     alert('Der Preis hat sich geändert: ' + newPrice);
   }
+
+  changePrice(newPrice: number): void {
+    this.product.price = newPrice;
+    this.onPriceChange(this.product.price);
+  }
 }
