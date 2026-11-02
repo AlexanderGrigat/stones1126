@@ -15,7 +15,7 @@ describe('ProductDisplay', () => {
 
     fixture = TestBed.createComponent(ProductDisplay);
     component = fixture.componentInstance;
-    component.productParent = new Product(12,'SuperStein', 1, 1);
+    fixture.componentRef.setInput('productParent', new Product(12, 'SuperStein', 1, 1));
     await fixture.whenStable();
   });
 
@@ -25,12 +25,12 @@ describe('ProductDisplay', () => {
 
   it('should correctly show name in DOM', () => {
     const liName = fixture.debugElement.query(By.css('#name'));
-    expect(liName.nativeElement.textContent).toContain(component.productParent.name);
+    expect(liName.nativeElement.textContent).toContain(component.productParent().name);
   });
 
   it('raisePrice should raise price by 5', () => {
-    const oldPrice = component.productParent.price;
+    const oldPrice = component.productParent().price;
     component.increasePrice();
-    expect(component.productParent.price).toBe(oldPrice + 5);
+    expect(component.productParent().price).toBe(oldPrice + 5);
   });
 });
