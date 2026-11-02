@@ -1,4 +1,4 @@
-import { Component, EventEmitter, input, Input, output, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Product } from '../product';
 
 @Component({
@@ -10,9 +10,23 @@ import { Product } from '../product';
 export class ProductDisplay {
   productParent = input.required<Product>();
   priceChange = output<number>();
+  showPrice = false; 
+
+  styleConfig = {
+    borderStyle: 'dashed',
+  }
 
    increasePrice(): void {
     this.productParent().price += 5; 
+    this.priceChange.emit(this.productParent().price);
+  }
+
+  togglePrice(){
+    this.showPrice = !this.showPrice;
+  }
+
+  changePrice(newPrice: number): void {
+    this.productParent().price = newPrice;
     this.priceChange.emit(this.productParent().price);
   }
 }

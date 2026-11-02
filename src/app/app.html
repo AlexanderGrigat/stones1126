@@ -1,4 +1,5 @@
-<stn-product-display (priceChange)="onPriceChange($event)" [productParent]="product">
-    <input type="number" #price/>
-    <button (click)="changePrice(price.valueAsNumber)">Preis ändern</button> 
-</stn-product-display>
+@for(prod of products;track prod.id; let isEven = $even){
+    <div [class.even-style]="isEven">
+       <stn-product-display (priceChange)="onPriceChange($event)" [productParent]="prod"/>
+    </div>
+}
