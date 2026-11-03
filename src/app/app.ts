@@ -9,7 +9,8 @@ import { Product } from './product/product';
 })
 export class App {
   protected readonly title = signal('stones');
-  
+  heute = new Date();
+
   products: Product[] = 
   [
   {

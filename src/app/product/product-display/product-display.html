@@ -6,7 +6,10 @@
         <li> ID: {{productParent().id}}</li>
         <li id="name"> Name: {{productParent().name}}</li>
         @if(showPrice){
-            <li> Preis: {{productParent().price}}</li>
+            <li> <strong>Preis: </strong>{{productParent().price | currency: '€'}}</li>
+        <li> <strong>Preis Netto 19%: </strong>{{productParent().price | netto | currency: '€'}}</li>
+        <li> <strong>Preis Netto 7%: </strong>{{productParent().price | netto:7 | currency: '€'}}</li>
+        <li> <strong>Preis Brutto 7%: </strong>{{productParent().price | netto:7: 'brutto' | currency: '€'}}</li>
         }
         <li> Gewicht: {{productParent().weight}}</li>
     </ul>

@@ -10,7 +10,7 @@ import { Product } from '../product';
 export class ProductDisplay {
   productParent = input.required<Product>();
   priceChange = output<number>();
-  showPrice = false; 
+  showPrice = true; 
 
   styleConfig = {
     borderStyle: 'dashed',
