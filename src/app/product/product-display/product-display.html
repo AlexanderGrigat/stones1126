@@ -6,7 +6,7 @@
         <li> ID: {{product().id}}</li>
         <li id="name"> Name: {{product().name}}</li>
         @if(showPrice){
-            <li> <strong>Preis: </strong>{{product().price | currency: '€'}}</li>
+        <li> <strong>Preis: </strong>{{product().price | currency: '€'}}</li>
         <li> <strong>Preis Netto 19%: </strong>{{product().price | netto | currency: '€'}}</li>
         <li> <strong>Preis Netto 7%: </strong>{{product().price | netto:7 | currency: '€'}}</li>
         <li> <strong>Preis Brutto 7%: </strong>{{product().price | netto:7: 'brutto' | currency: '€'}}</li>
@@ -14,9 +14,12 @@
         <li> Gewicht: {{product().weight}}</li>
     </ul>
     <ng-content/>
-    <input type="number" #price/>
-    <button (click)="changePrice(price.valueAsNumber)">Preis ändern</button> 
-    <button (click)="togglePrice()">Preis einblenden/ausblenden</button>
-    <button (click)="increasePrice()">Preis erhöhen</button>
+     <button mat-raised-button (click)="togglePrice()">Preis ein-/ausblenden</button>
+     <button mat-raised-button (click)="increasePrice()">Preis erhöhen</button>
+     <br/>
+     <mat-form-field>
+         <input matInput type="number" #price>
+     </mat-form-field>
+     <button mat-raised-button (click)="changePrice(price.valueAsNumber)"> Preis ändern</button> <br/>
 </div>
 
