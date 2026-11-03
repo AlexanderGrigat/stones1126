@@ -10,18 +10,18 @@ import { Product } from '../product';
 export class ProductDisplay {
   product = input.required<Product>();
   priceChange = output<number>();
-  showPrice = true; 
+  showPrice = true;
 
   styleConfig = {
     borderStyle: 'dashed',
-  }
+  };
 
-   increasePrice(): void {
-    this.product().price += 5; 
+  increasePrice(): void {
+    this.product().price += 5;
     this.priceChange.emit(this.product().price);
   }
 
-  togglePrice(){
+  togglePrice() {
     this.showPrice = !this.showPrice;
   }
 
