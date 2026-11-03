@@ -8,7 +8,7 @@ import { Product } from '../product';
   styleUrl: './product-display.css',
 })
 export class ProductDisplay {
-  productParent = input.required<Product>();
+  product = input.required<Product>();
   priceChange = output<number>();
   showPrice = true; 
 
@@ -17,8 +17,8 @@ export class ProductDisplay {
   }
 
    increasePrice(): void {
-    this.productParent().price += 5; 
-    this.priceChange.emit(this.productParent().price);
+    this.product().price += 5; 
+    this.priceChange.emit(this.product().price);
   }
 
   togglePrice(){
@@ -26,7 +26,7 @@ export class ProductDisplay {
   }
 
   changePrice(newPrice: number): void {
-    this.productParent().price = newPrice;
-    this.priceChange.emit(this.productParent().price);
+    this.product().price = newPrice;
+    this.priceChange.emit(this.product().price);
   }
 }

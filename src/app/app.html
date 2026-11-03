@@ -1,6 +1,6 @@
 <span> Heute ist {{ heute | date:'fullDate' | uppercase }}</span>
 @for(prod of products;track prod.id; let isEven = $even){
     <div [class.even-style]="isEven">
-       <stn-product-display (priceChange)="onPriceChange($event)" [productParent]="prod"/>
+       <stn-product-display (priceChange)="onPriceChange($event)" [product]="prod"/>
     </div>
 }

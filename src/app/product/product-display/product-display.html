@@ -1,17 +1,17 @@
 <div 
    [style]="styleConfig" 
-   [class]="{'border-green' : productParent().price < 100}"
+   [class]="{'border-green' : product().price < 100}"
 >
     <ul>
-        <li> ID: {{productParent().id}}</li>
-        <li id="name"> Name: {{productParent().name}}</li>
+        <li> ID: {{product().id}}</li>
+        <li id="name"> Name: {{product().name}}</li>
         @if(showPrice){
-            <li> <strong>Preis: </strong>{{productParent().price | currency: '€'}}</li>
-        <li> <strong>Preis Netto 19%: </strong>{{productParent().price | netto | currency: '€'}}</li>
-        <li> <strong>Preis Netto 7%: </strong>{{productParent().price | netto:7 | currency: '€'}}</li>
-        <li> <strong>Preis Brutto 7%: </strong>{{productParent().price | netto:7: 'brutto' | currency: '€'}}</li>
+            <li> <strong>Preis: </strong>{{product().price | currency: '€'}}</li>
+        <li> <strong>Preis Netto 19%: </strong>{{product().price | netto | currency: '€'}}</li>
+        <li> <strong>Preis Netto 7%: </strong>{{product().price | netto:7 | currency: '€'}}</li>
+        <li> <strong>Preis Brutto 7%: </strong>{{product().price | netto:7: 'brutto' | currency: '€'}}</li>
         }
-        <li> Gewicht: {{productParent().weight}}</li>
+        <li> Gewicht: {{product().weight}}</li>
     </ul>
     <ng-content/>
     <input type="number" #price/>
