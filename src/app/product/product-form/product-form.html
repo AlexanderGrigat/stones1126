@@ -2,17 +2,39 @@
     <mat-form-field>
       <mat-label>Name</mat-label>
       <input matInput formControlName="name" />
+      @if (productForm.controls.name.hasError('alphaNum')) {
+        <mat-error> Nur Alphanumerische Werte erlaubt</mat-error>
+      }
+      @if (productForm.controls.name.hasError('required')) {
+        <mat-error> Das ist ein Pflichtfeld!</mat-error>
+      }
     </mat-form-field>
     <br />
     <mat-form-field>
       <mat-label>Preis</mat-label>
       <input matInput type="number" formControlName="price" />
+      @if (productForm.controls.price.hasError('required')) {
+        <mat-error>Das ist ein Pflichtfeld!</mat-error>
+        } 
+      @if (productForm.controls.price.hasError('positiv')) {
+        <mat-error>Preis muss größer 0 sein!</mat-error>
+        }
     </mat-form-field>
     <br />
     <mat-form-field>
       <mat-label>Gewicht</mat-label>
       <input matInput type="number" formControlName="weight"/>
+       @if (productForm.controls.weight.hasError('required')){
+        <mat-error>Pflichtfeld!!!!</mat-error>
+        }
     </mat-form-field>
     <br />
-    <button color="accent" (click)="save()"color="accent" mat-raised-button>Speichern</button>
+    <button 
+      [disabled]="productForm.invalid" 
+      color="accent"
+       (click)="save()"
+       color="accent" 
+       mat-raised-button>
+       Speichern
+    </button>
   </form>
