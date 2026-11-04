@@ -1,0 +1,5 @@
+@for(prod of products;track prod.id; let isEven = $even){
+    <mat-card  [class.even-style]="isEven">
+       <stn-product-display [product]="prod"/>
+    </mat-card>
+}

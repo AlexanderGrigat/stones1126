@@ -10,7 +10,6 @@ describe('App', () => {
       imports: [
         AppModule,
         MatToolbarModule,
-        MatCardModule,
       ],
     }).compileComponents();
   });
