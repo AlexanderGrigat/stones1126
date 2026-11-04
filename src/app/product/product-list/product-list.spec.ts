@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { ProductList } from './product-list';
 import { ProductModule } from '../product-module';
 
@@ -11,6 +12,7 @@ describe('ProductList', () => {
       imports: [
         ProductModule,
       ],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProductList);

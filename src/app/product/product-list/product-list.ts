@@ -52,4 +52,12 @@ export class ProductList {
       "weight": 38
     }
   ];
+
+  onSaveProduct(newProduct: Product){
+    this.products.unshift(newProduct);
+  }
+
+  onPriceChange(price: number): void{
+    alert('Der Preis hat sich geändert: '+ price);
+  }
 }

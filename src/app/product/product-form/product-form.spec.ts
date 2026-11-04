@@ -4,6 +4,7 @@ import { ProductForm } from './product-form';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormField } from '@angular/forms/signals';
+import { provideRouter } from '@angular/router';
 
 describe('ProductForm', () => {
   let component: ProductForm;
@@ -11,8 +12,15 @@ describe('ProductForm', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProductForm],
-      imports: [FormField, MatFormFieldModule, MatInputModule],
+      declarations: [
+        ProductForm,
+      ],
+      imports: [
+        FormField, 
+        MatFormFieldModule, 
+        MatInputModule,
+      ],
+      providers:[provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProductForm);

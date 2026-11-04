@@ -11,6 +11,7 @@ import { ProductForm } from './product-form/product-form';
 import { FormField } from '@angular/forms/signals';
 import { ProductList } from './product-list/product-list';
 import { MatCard } from "@angular/material/card";
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MatCard } from "@angular/material/card";
     MatInputModule,
     MatButtonModule,
     FormField,
-    MatCard
+    MatCard,
+    RouterModule,
   ],
   exports: [
     ProductDisplay,

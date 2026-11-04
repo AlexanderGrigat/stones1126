@@ -1,7 +1,8 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, inject, output, signal } from '@angular/core';
 import { Product } from '../product';
 import { form, required } from '@angular/forms/signals';
 import { alphaNum, positiv } from '../../utils/validators/custom-validators';
+import { ActivatedRoute } from '@angular/router';
 
 interface ProductFormModel {
   name: string;
@@ -18,8 +19,10 @@ const emptyProduct = (): ProductFormModel => ({ name: '', price: 0, weight: 0 })
   styleUrl: './product-form.css',
 })
 export class ProductForm {
+  private readonly route = inject(ActivatedRoute);
   private readonly model = signal<ProductFormModel>(emptyProduct());
   readonly saveProduct = output<Product>();
+  id = -1;
 
   protected readonly productForm = form(this.model, (path) => {
     required(path.name);
@@ -30,12 +33,35 @@ export class ProductForm {
     positiv(path.weight);
   });
 
+  constructor(){
+      this.route.paramMap.subscribe(paramMap => {
+        const idParam = paramMap.get('id');
+        if(idParam){
+          this.id = +idParam;
+        }
+      })
+  }
+
   save() {
     if (this.productForm().invalid()) {
       return;
     }
     const { name, price, weight } = this.model();
-    this.saveProduct.emit(new Product(-1, name, price, weight));
+    this.saveProduct.emit(new Product(
+      this.id,
+      name,
+      price,
+      weight
+    ));
     this.productForm().reset(emptyProduct());
+  }
+
+  hasSaved(){
+    const formValue = this.productForm().value;
+    if(!formValue().name && !formValue().price && !formValue().weight){
+      return true;
+    } else{
+      return confirm('Du hast ungespeicherte Daten, willst du die wirklich löschen?')
+    }
   }
 }
