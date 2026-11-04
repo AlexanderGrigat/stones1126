@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductForm } from './product-form';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormField } from '@angular/forms/signals';
 
 describe('ProductForm', () => {
   let component: ProductForm;
@@ -12,13 +12,8 @@ describe('ProductForm', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ProductForm],
-      imports: [
-          ReactiveFormsModule,
-          MatFormFieldModule,
-          MatInputModule,
-      ],
-    })
-    .compileComponents();
+      imports: [FormField, MatFormFieldModule, MatInputModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ProductForm);
     component = fixture.componentInstance;

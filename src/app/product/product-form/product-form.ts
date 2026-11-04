@@ -1,7 +1,15 @@
-import { Component, inject, output } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 import { Product } from '../product';
-import { FormBuilder, Validators } from '@angular/forms';
-import { CustomValidators } from '../../utils/validators/custom-validators';
+import { form, required } from '@angular/forms/signals';
+import { alphaNum, positiv } from '../../utils/validators/custom-validators';
+
+interface ProductFormModel {
+  name: string;
+  price: number;
+  weight: number;
+}
+
+const emptyProduct = (): ProductFormModel => ({ name: '', price: 0, weight: 0 });
 
 @Component({
   selector: 'stn-product-form',
@@ -10,27 +18,24 @@ import { CustomValidators } from '../../utils/validators/custom-validators';
   styleUrl: './product-form.css',
 })
 export class ProductForm {
+  private readonly model = signal<ProductFormModel>(emptyProduct());
   readonly saveProduct = output<Product>();
-  // productForm = new FormGroup({
-  // name: new FormControl('', [Validators.required, CustomValidators.alphaNum]),
-  // price: new FormControl(0, [Validators.required, CustomValidators.positiv]),
-  // weight: new FormControl(0, [Validators.required]),
-  // })
 
-
-  private readonly fb = inject(FormBuilder);
-  productForm = this.fb.group({
-    name: ['', [Validators.required, CustomValidators.alphaNum]],
-    price: [0, [Validators.required, CustomValidators.positiv]],
-    weight: [0, [Validators.required]],
+  protected readonly productForm = form(this.model, (path) => {
+    required(path.name);
+    alphaNum(path.name);
+    required(path.price);
+    positiv(path.price);
+    required(path.weight);
+    positiv(path.weight);
   });
 
   save() {
-    const formValue = this.productForm.value;
-     if (this.productForm.valid && formValue.name && formValue.price && formValue.weight) {
-      const product = new Product(-1, formValue.name, formValue.price, formValue.weight);
-      this.saveProduct.emit(product);
-      this.productForm.reset();
+    if (this.productForm().invalid()) {
+      return;
     }
+    const { name, price, weight } = this.model();
+    this.saveProduct.emit(new Product(-1, name, price, weight));
+    this.productForm().reset(emptyProduct());
   }
 }

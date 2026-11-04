@@ -8,13 +8,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ProductForm } from './product-form/product-form';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormField } from '@angular/forms/signals';
 
 @NgModule({
-  declarations: [
-    ProductDisplay,
-    ProductForm,
-  ],
+  declarations: [ProductDisplay, ProductForm],
   imports: [
     CommonModule,
     UtilsModule,
@@ -22,7 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    ReactiveFormsModule,
+    FormField,
   ],
   exports: [
     ProductDisplay,

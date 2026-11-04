@@ -1,13 +1,13 @@
-import { AbstractControl, ValidationErrors } from "@angular/forms";
+import { SchemaPathTree, validate } from '@angular/forms/signals';
 
-export class CustomValidators {
-    static alphaNum(ctrl: AbstractControl): ValidationErrors | null {
-        let pattern: RegExp = /^[a-zA-Z0-9]+$/;
-        return pattern.test(ctrl.value) ? null : { alphaNum: true }
-    }
+export function alphaNum(path: SchemaPathTree<string>) {
+  validate(path, ({ value }) => {
+    return /^[a-zA-Z0-9]+$/.test(value()) ? null : { kind: 'alphaNum' };
+  });
+}
 
-    static positiv(ctrl: AbstractControl): ValidationErrors | null {
-    let value = Number(ctrl.value);
-    return value > 0 ? null : { positiv: true };
-  }
+export function positiv(path: SchemaPathTree<number>) {
+  validate(path, ({ value }) => {
+    return Number(value()) > 0 ? null : { kind: 'positiv' };
+  });
 }
