@@ -23,4 +23,8 @@ describe('ProductList', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should correctly read product list', () => {
+    expect(component.products[0].id).toBe(-1);
+  });
 });

@@ -3,6 +3,7 @@ import { Product } from '../product';
 import { form, required } from '@angular/forms/signals';
 import { alphaNum, positiv } from '../../utils/validators/custom-validators';
 import { ActivatedRoute } from '@angular/router';
+import { ProductData } from '../product-data';
 
 interface ProductFormModel {
   name: string;
@@ -22,6 +23,7 @@ export class ProductForm {
   private readonly route = inject(ActivatedRoute);
   private readonly model = signal<ProductFormModel>(emptyProduct());
   readonly saveProduct = output<Product>();
+  private readonly productService = inject(ProductData)
   id = -1;
 
   protected readonly productForm = form(this.model, (path) => {
