@@ -23,7 +23,7 @@ export class ProductForm {
   private readonly route = inject(ActivatedRoute);
   private readonly model = signal<ProductFormModel>(emptyProduct());
   readonly saveProduct = output<Product>();
-  private readonly productService = inject(ProductData)
+  private readonly productData = inject(ProductData)
   id = -1;
 
   protected readonly productForm = form(this.model, (path) => {
@@ -49,7 +49,7 @@ export class ProductForm {
       return;
     }
     const { name, price, weight } = this.model();
-    this.saveProduct.emit(new Product(
+    this.productData.addProduct(new Product(
       this.id,
       name,
       price,
