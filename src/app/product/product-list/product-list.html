@@ -1,4 +1,4 @@
-@for(prod of products;track prod.id; let isEven = $even){
+@for(prod of products | async;track prod.id; let isEven = $even){
     <mat-card  [class.even-style]="isEven">
        <stn-product-display [product]="prod"/>
        <button mat-raised-button [routerLink]="['/products/new', prod.id]">Produkt ändern</button> 

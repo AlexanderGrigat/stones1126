@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormField } from '@angular/forms/signals';
 import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('ProductForm', () => {
   let component: ProductForm;
@@ -20,7 +21,10 @@ describe('ProductForm', () => {
         MatFormFieldModule, 
         MatInputModule,
       ],
-      providers:[provideRouter([])]
+      providers:[
+        provideRouter([]),
+        provideHttpClient(),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProductForm);

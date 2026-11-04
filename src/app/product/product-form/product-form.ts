@@ -1,4 +1,4 @@
-import { Component, inject, output, signal } from '@angular/core';
+import { Component, computed, inject, output, signal } from '@angular/core';
 import { Product } from '../product';
 import { form, required } from '@angular/forms/signals';
 import { alphaNum, positiv } from '../../utils/validators/custom-validators';
@@ -34,14 +34,16 @@ export class ProductForm {
     required(path.weight);
     positiv(path.weight);
   });
-
+  protected readonly nameReversed = computed(() => this.productForm.name().value().split('').reverse().join(''));
+  protected readonly nameLength = computed(() => this.productForm.name().value().length);
+ 
   constructor(){
       this.route.paramMap.subscribe(paramMap => {
         const idParam = paramMap.get('id');
         if(idParam){
           this.id = +idParam;
         }
-      })
+      });
   }
 
   save() {
@@ -49,12 +51,7 @@ export class ProductForm {
       return;
     }
     const { name, price, weight } = this.model();
-    this.productData.addProduct(new Product(
-      this.id,
-      name,
-      price,
-      weight
-    ));
+    this.productData.addProduct({ name, price, weight }).subscribe();
     this.productForm().reset(emptyProduct());
   }
 

@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Product } from '../product';
+import { Observable } from 'rxjs';
 import { ProductData } from '../product-data';
 
 @Component({
@@ -9,7 +10,7 @@ import { ProductData } from '../product-data';
   templateUrl: './product-list.html',
 })
 export class ProductList {
-  products: Product[] = inject(ProductData).getList();
+  products: Observable<Product[]> = inject(ProductData).getList();
 
   onPriceChange(price: number): void{
     alert('Der Preis hat sich geändert: '+ price);
