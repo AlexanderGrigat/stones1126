@@ -14,18 +14,8 @@ describe('ProductData', () => {
     expect(service).toBeTruthy();
   });
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(ProductData);
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-
   it('getList should productList', () => {
     expect(service.getList()[0].id).toEqual(0);
-    expect(service).toBeTruthy();
   });
 
   it('newProduct should save new product', () => {
