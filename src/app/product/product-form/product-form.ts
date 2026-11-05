@@ -1,9 +1,12 @@
 import { Component, computed, inject, output, signal } from '@angular/core';
 import { Product } from '../product';
-import { form, required } from '@angular/forms/signals';
+import { form, required, FormField } from '@angular/forms/signals';
 import { alphaNum, positiv } from '../../utils/validators/custom-validators';
 import { ActivatedRoute } from '@angular/router';
 import { ProductData } from '../product-data';
+import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 interface ProductFormModel {
   name: string;
@@ -15,9 +18,16 @@ const emptyProduct = (): ProductFormModel => ({ name: '', price: 0, weight: 0 })
 
 @Component({
   selector: 'stn-product-form',
-  standalone: false,
   templateUrl: './product-form.html',
   styleUrl: './product-form.css',
+  imports: [
+    MatFormField,
+    MatLabel,
+    MatError,
+    FormField,
+    MatInput,
+    MatButtonModule,
+]
 })
 export class ProductForm {
   private readonly route = inject(ActivatedRoute);

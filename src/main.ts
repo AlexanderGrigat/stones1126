@@ -1,7 +1,15 @@
-import { platformBrowser } from '@angular/platform-browser';
-import { AppModule } from './app/app-module';
+import { HttpClient } from '@angular/common/http';
+import { bootstrapApplication } from "@angular/platform-browser";
+import { App } from "./app/app";
+import { importProvidersFrom } from "@angular/core";
+import { provideRouter } from '@angular/router';
+import { LayoutModule } from '@angular/cdk/layout';
+import { appRoutes } from './app/app.routes';
 
-platformBrowser().bootstrapModule(AppModule, {
-  
-})
-  .catch(err => console.error(err));
+bootstrapApplication(App, {
+  providers: [
+    importProvidersFrom(HttpClient),
+    provideRouter(appRoutes),
+    importProvidersFrom(LayoutModule),
+  ]
+});

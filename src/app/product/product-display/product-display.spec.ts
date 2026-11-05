@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductDisplay } from './product-display';
 import { Product } from '../product';
 import { By } from '@angular/platform-browser';
-import { ProductModule } from '../product-module';
 
 describe('ProductDisplay', () => {
   let component: ProductDisplay;
@@ -11,7 +10,7 @@ describe('ProductDisplay', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProductModule],
+      imports: [ProductDisplay],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProductDisplay);

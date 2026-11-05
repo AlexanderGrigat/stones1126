@@ -1,11 +1,24 @@
 import { Component, input, output } from '@angular/core';
 import { Product } from '../product';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInput, MatInputModule } from '@angular/material/input';
+import { FormField } from '@angular/forms/signals';
+import { NettoPipe } from '../../utils/netto-pipe';
+import { CurrencyPipe } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'stn-product-display',
-  standalone: false,
   templateUrl: './product-display.html',
   styleUrl: './product-display.css',
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    NettoPipe,
+    CurrencyPipe,
+    MatButtonModule,
+    MatInput,
+  ]
 })
 export class ProductDisplay {
   product = input.required<Product>();

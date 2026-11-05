@@ -13,12 +13,10 @@ describe('ProductForm', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        ProductForm,
-      ],
       imports: [
-        FormField, 
-        MatFormFieldModule, 
+        ProductForm,
+        FormField,
+        MatFormFieldModule,
         MatInputModule,
       ],
       providers:[
